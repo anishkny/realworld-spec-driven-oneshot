@@ -20,8 +20,8 @@ Authorization: xxxxx.yyyyy.zzzzz
 
 # Tech stack
 
-- Node.js
-- Express
+- Go 1.25
+- Gin
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests
@@ -236,6 +236,8 @@ Example request body:
 No authentication required, returns a [User](#users-for-authentication)
 
 Required fields: `email`, `username`, `password`
+
+Email should be valid.
 
 ### Get Current User
 

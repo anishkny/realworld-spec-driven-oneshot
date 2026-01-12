@@ -9,6 +9,8 @@ Entrypoint should be src/index.js
 
 Use PORT 3000.
 
+Health check on / should return 200 OK
+
 # Tech stack
 * Node.js
 * Express

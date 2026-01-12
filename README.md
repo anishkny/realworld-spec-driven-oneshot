@@ -10,6 +10,8 @@ docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRE
 export POSTGRES_URI=postgres://postgres:password@localhost:5432/postgres
 ```
 
+Ensure Copilot (or similar) is installed. See [instructions](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli).
+
 # Generate Code
 
 ```

@@ -18,10 +18,12 @@ For auth, use JWT token directly in `Authorization` header.
 
 Example: [Authorization: xxxxx.yyyyy.zzzzz]
 
+Passwords should be encrypted.
+
 # Tech stack
 
-- Go 1.25
-- Gin
+- Python 3
+- FastAPI
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests
@@ -353,6 +355,8 @@ Authentication required, will return an [Article](#single-article)
 Required fields: `title`, `description`, `body`
 
 Optional fields: `tagList` as an array of Strings
+
+`slug` should be clean human readable with few random chars at end.
 
 ### Update Article
 

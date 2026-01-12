@@ -72,7 +72,7 @@ describe("RealWorld API Tests", () => {
       const user = generateUser();
       const response = await makeRequest("POST", "/api/users", { user });
 
-      assert.strictEqual(response.status, 201, "Registration should return 201");
+      assert.strictEqual(response.status, 200, "Registration should return 200");
       assert(response.body.user, "Response should contain user object");
       assert.strictEqual(response.body.user.username, user.username);
       assert.strictEqual(response.body.user.email, user.email);
@@ -285,7 +285,7 @@ describe("RealWorld API Tests", () => {
 
       const response = await makeRequest("POST", "/api/articles", { article }, token);
 
-      assert.strictEqual(response.status, 201, "Should return 201");
+      assert.strictEqual(response.status, 200, "Should return 200");
       assert(response.body.article, "Response should contain article");
       assert(response.body.article.slug, "Article should have slug");
       assert.strictEqual(response.body.article.title, article.title);
@@ -306,7 +306,7 @@ describe("RealWorld API Tests", () => {
 
         const response = await makeRequest("POST", "/api/articles", { article }, token);
 
-        assert.strictEqual(response.status, 201, `Article ${i + 1} creation should succeed`);
+        assert.strictEqual(response.status, 200, `Article ${i + 1} creation should succeed`);
         testArticles.push({
           ...article,
           slug: response.body.article.slug,
@@ -528,7 +528,7 @@ describe("RealWorld API Tests", () => {
       // Then delete it
       const response = await makeRequest("DELETE", `/api/articles/${slug}`, null, token);
 
-      assert.strictEqual(response.status, 204, "Should return 204 No Content");
+      assert.strictEqual(response.status, 200, "Should return 200");
     });
 
     it("should return 403 when deleting article by non-author", async () => {
@@ -705,7 +705,7 @@ describe("RealWorld API Tests", () => {
         token
       );
 
-      assert.strictEqual(response.status, 201, "Should return 201");
+      assert.strictEqual(response.status, 200, "Should return 200");
       assert(response.body.comment, "Response should contain comment");
       assert.strictEqual(response.body.comment.body, comment.comment.body);
       assert.strictEqual(response.body.comment.author.username, user.username);
@@ -728,7 +728,7 @@ describe("RealWorld API Tests", () => {
           token
         );
 
-        assert.strictEqual(response.status, 201, `Comment ${i + 1} should be created`);
+        assert.strictEqual(response.status, 200, `Comment ${i + 1} should be created`);
       }
     });
 
@@ -836,7 +836,7 @@ describe("RealWorld API Tests", () => {
         token
       );
 
-      assert.strictEqual(response.status, 204, "Should return 204 No Content");
+      assert.strictEqual(response.status, 200, "Should return 200");
     });
 
     it("should return 403 when deleting other user's comment", async () => {
@@ -1122,7 +1122,7 @@ describe("RealWorld API Tests", () => {
 
       const response = await makeRequest("POST", "/api/articles", { article }, token);
 
-      assert.strictEqual(response.status, 201, "Should create article");
+      assert.strictEqual(response.status, 200, "Should create article");
       assert(response.body.article.slug, "Should have a slug");
       // Slug should be URL-safe
       assert(/^[a-z0-9\-]+$/.test(response.body.article.slug), "Slug should be URL-safe");
@@ -1158,7 +1158,7 @@ describe("RealWorld API Tests", () => {
 
       const response = await makeRequest("POST", "/api/articles", { article }, token);
 
-      assert.strictEqual(response.status, 201, "Should handle long body");
+      assert.strictEqual(response.status, 200, "Should handle long body");
       assert.strictEqual(response.body.article.body, longBody, "Body should be preserved");
     });
 

@@ -20,7 +20,7 @@ node src/index.js &
 npx -y wait-port http://localhost:${PORT} --output dots --timeout=${TIMEOUT}
 
 # Run tests
-node --test ./api.test.mjs
+node --test --test-timeout 10000 ./api.test.mjs
 
 # Kill the server process
 npx -y kill-port ${PORT} > /dev/null 2>&1 || true

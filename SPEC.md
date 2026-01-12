@@ -24,8 +24,8 @@ Passwords should be encrypted.
 
 # Tech stack
 
-- C++
-- Drogon
+- Rust
+- Axum
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests

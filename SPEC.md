@@ -1,27 +1,29 @@
 # Introduction
+
 Backend API for Medium.com like blogging platform.
 
 Build just the specified features exactly - no additions.
 
-Output all source code in src/ and test code in test/
-
-Entrypoint should be src/index.js
+Output all source code in a single file src/index.js
 
 Use PORT 3000.
 
-Health check on / should return 200 OK
+Health check on / should return 200 with empty body.
 
-For auth, use JWT token in `Authorization` header.
+For auth, use JWT token directly in `Authorization` header. Example: 
+
+Authorization: xxxxx.yyyyy.zzzzz
 
 # Tech stack
-* Node.js
-* Express
-* Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
+
+- Node.js
+- Express
+- Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests
-Write API level integration tests in mocha in test/api.test.js
+All tests in `api.test.mjs` should pass.
 
-Run tests with `./start-and-test.sh` which will start server and run API tests.
+Check by running `start-and-test.sh` which will start server and run tests.
 
 # Details
 
@@ -190,8 +192,6 @@ If a request fails any validations, expect a 422 and errors in the following for
 
 404 for Not found requests, when a resource can't be found to fulfill the request
 
-
-
 ## Endpoints:
 
 ### Authentication:
@@ -199,6 +199,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 `POST /api/users/login`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -212,12 +213,12 @@ No authentication required, returns a [User](#users-for-authentication)
 
 Required fields: `email`, `password`
 
-
 ### Registration:
 
 `POST /api/users`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -232,21 +233,18 @@ No authentication required, returns a [User](#users-for-authentication)
 
 Required fields: `email`, `username`, `password`
 
-
-
 ### Get Current User
 
 `GET /api/user`
 
 Authentication required, returns a [User](#users-for-authentication) that's the current user
 
-
-
 ### Update User
 
 `PUT /api/user`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -259,18 +257,13 @@ Example request body:
 
 Authentication required, returns the [User](#users-for-authentication)
 
-
 Accepted fields: `email`, `username`, `password`, `image`, `bio`
-
-
 
 ### Get Profile
 
 `GET /api/profiles/:username`
 
 Authentication optional, returns a [Profile](#profile)
-
-
 
 ### Follow user
 
@@ -280,8 +273,6 @@ Authentication required, returns a [Profile](#profile)
 
 No additional parameters required
 
-
-
 ### Unfollow user
 
 `DELETE /api/profiles/:username/follow`
@@ -289,8 +280,6 @@ No additional parameters required
 Authentication required, returns a [Profile](#profile)
 
 No additional parameters required
-
-
 
 ### List Articles
 
@@ -322,8 +311,6 @@ Offset/skip number of articles (default is 0):
 
 Authentication optional, will return [multiple articles](#multiple-articles), ordered by most recent first
 
-
-
 ### Feed Articles
 
 `GET /api/articles/feed`
@@ -331,7 +318,6 @@ Authentication optional, will return [multiple articles](#multiple-articles), or
 Can also take `limit` and `offset` query parameters like [List Articles](#list-articles)
 
 Authentication required, will return [multiple articles](#multiple-articles) created by followed users, ordered by most recent first.
-
 
 ### Get Article
 
@@ -362,8 +348,6 @@ Required fields: `title`, `description`, `body`
 
 Optional fields: `tagList` as an array of Strings
 
-
-
 ### Update Article
 
 `PUT /api/articles/:slug`
@@ -384,14 +368,11 @@ Optional fields: `title`, `description`, `body`
 
 The `slug` also gets updated when the `title` is changed
 
-
 ### Delete Article
 
 `DELETE /api/articles/:slug`
 
 Authentication required
-
-
 
 ### Add Comments to an Article
 
@@ -411,23 +392,17 @@ Authentication required, returns the created [Comment](#single-comment)
 
 Required field: `body`
 
-
-
 ### Get Comments from an Article
 
 `GET /api/articles/:slug/comments`
 
 Authentication optional, returns [multiple comments](#multiple-comments)
 
-
-
 ### Delete Comment
 
 `DELETE /api/articles/:slug/comments/:id`
 
 Authentication required
-
-
 
 ### Favorite Article
 
@@ -437,8 +412,6 @@ Authentication required, returns the [Article](#single-article)
 
 No additional parameters required
 
-
-
 ### Unfavorite Article
 
 `DELETE /api/articles/:slug/favorite`
@@ -446,8 +419,6 @@ No additional parameters required
 Authentication required, returns the [Article](#single-article)
 
 No additional parameters required
-
-
 
 ### Get Tags
 

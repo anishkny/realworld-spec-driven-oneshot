@@ -13,5 +13,5 @@ export POSTGRES_URI=postgres://postgres:password@localhost:5432/postgres
 # Generate Code
 
 ```
-copilot -p 'Implement SPEC.md' --allow-all-paths --allow-all-tools --allow-all-urls
+copilot -p 'Implement SPEC.md' --allow-all-paths --allow-all-tools --allow-all-urls --share
 ```

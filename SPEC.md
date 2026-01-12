@@ -4,7 +4,11 @@ Backend API for Medium.com like blogging platform.
 
 Build just the specified features exactly - no additions.
 
-Output all source code in a single file src/index.js
+Output all source code in a single folder code/ including package.json etc
+
+Do not modify anything outside folder code/
+
+Create a script to start server named 
 
 Use PORT 3000.
 

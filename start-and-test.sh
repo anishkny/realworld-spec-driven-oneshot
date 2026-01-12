@@ -4,6 +4,9 @@ set -euxo pipefail
 PORT=3000
 TIMEOUT=30000   # in milliseconds
 
+# Ensure cleanup happens even if script fails
+trap 'npx -y kill-port ${PORT} > /dev/null 2>&1 || true' EXIT
+
 # Ensure port 5432 is up (Postgres)
 npx -y wait-port 5432 --timeout 1000 || {
   echo "Make sure Postgres is running on port 5432"
@@ -14,7 +17,7 @@ npx -y wait-port 5432 --timeout 1000 || {
 npx -y kill-port ${PORT} > /dev/null 2>&1 || true
 
 # Start server in background
-node src/index.js &
+. ./code/start.sh &
 
 # Wait for server to be ready
 npx -y wait-port http://localhost:${PORT} --output dots --timeout=${TIMEOUT}

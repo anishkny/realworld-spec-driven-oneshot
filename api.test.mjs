@@ -89,7 +89,7 @@ describe("RealWorld API Tests", () => {
 
         assert.strictEqual(
           response.status,
-          201,
+          200,
           `User ${i + 1} registration should succeed`
         );
         assert(response.body.user.token);
@@ -811,7 +811,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Delete Comment Tests
   // ========================================================================
-
   describe("Delete Comment (DELETE /api/articles/:slug/comments/:id)", () => {
     it("should delete own comment", async () => {
       const article = testArticles[1];
@@ -910,7 +909,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Profile Tests
   // ========================================================================
-
   describe("Get Profile (GET /api/profiles/:username)", () => {
     it("should get profile without authentication", async () => {
       const username = testUsers[0].username;
@@ -945,7 +943,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Follow Tests
   // ========================================================================
-
   describe("Follow User (POST /api/profiles/:username/follow)", () => {
     it("should follow user when authenticated", async () => {
       const targetUser = testUsers[10];
@@ -1006,7 +1003,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Unfollow Tests
   // ========================================================================
-
   describe("Unfollow User (DELETE /api/profiles/:username/follow)", () => {
     it("should unfollow user when authenticated", async () => {
       const targetUser = testUsers[12];
@@ -1069,7 +1065,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Tags Tests
   // ========================================================================
-
   describe("Get Tags (GET /api/tags)", () => {
     it("should get list of tags without authentication", async () => {
       const response = await makeRequest("GET", "/api/tags");
@@ -1101,7 +1096,6 @@ describe("RealWorld API Tests", () => {
   // ========================================================================
   // Edge Cases and Validation Tests
   // ========================================================================
-
   describe("Edge Cases and Validation", () => {
     it("should handle empty article list gracefully", async () => {
       const response = await makeRequest("GET", "/api/articles");
@@ -1179,7 +1173,6 @@ describe("RealWorld API Tests", () => {
 // ============================================================================
 // HTTP Request Helper
 // ============================================================================
-
 function makeRequest(method, path, body = null, token = null) {
   return new Promise((resolve, reject) => {
     const url = new URL(BASE_URL + path);

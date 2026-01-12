@@ -18,16 +18,10 @@ For auth, use JWT token in `Authorization` header.
 * Express
 * Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
-If Postgres is not running, start one by executing:
-
-```
-docker run -d --name pg -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=postgres -p 5432:5432 postgres:alpine
-```
-
 # Tests
 Write API level integration tests in mocha in test/api.test.js
 
-Run tests with `npm test` which will start server and run API tests.
+Run tests with `./start-and-test.sh` which will start server and run API tests.
 
 # Details
 

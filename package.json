@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha --bail",
+    "start-and-test": "start-server-and-test start 3000 test"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.5",
+    "start-server-and-test": "^2.1.3"
+  }
+}

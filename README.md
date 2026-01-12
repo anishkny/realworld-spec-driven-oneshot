@@ -15,5 +15,5 @@ Ensure Copilot (or similar) is installed. See [instructions](https://docs.github
 # Generate Code
 
 ```
-copilot -p 'Implement SPEC.md' --allow-all-paths --allow-all-tools --allow-all-urls --share
+copilot -p 'Implement SPEC.md' --allow-all-paths --allow-all-tools --allow-all-urls --share /tmp/copilot-session-`date +%s`.md
 ```

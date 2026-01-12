@@ -17,7 +17,7 @@ npx -y wait-port 5432 --timeout 1000 || {
 npx -y kill-port ${PORT} > /dev/null 2>&1 || true
 
 # Start server in background
-. ./code/start.sh &
+./code/start.sh &
 
 # Wait for server to be ready
 npx -y wait-port http://localhost:${PORT} --output dots --timeout=${TIMEOUT}

@@ -8,15 +8,15 @@ Output all source code in a single folder code/ including package.json etc
 
 Do not modify anything outside folder code/
 
-Create a script to start server named 
+Create an executable script to start server named code/start.sh
 
 Use PORT 3000.
 
 Health check on / should return 200 with empty body.
 
-For auth, use JWT token directly in `Authorization` header. Example: 
+For auth, use JWT token directly in `Authorization` header.
 
-Authorization: xxxxx.yyyyy.zzzzz
+Example: [Authorization: xxxxx.yyyyy.zzzzz]
 
 # Tech stack
 

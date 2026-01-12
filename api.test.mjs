@@ -10,7 +10,7 @@ const BASE_URL = `http://localhost:${PORT}`;
 // Bail on first failure
 afterEach((t) => {
   if (!t.passed) {
-    console.error(`Test failed: ${t.name}`);
+    console.error(`Bailing because test failed: [${t.name}], with error: ${t.error}`);
     process.exit(1);
   }
 });

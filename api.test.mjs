@@ -241,6 +241,11 @@ describe("RealWorld API Tests", () => {
       assert.strictEqual(response.status, 200, "Should return 200");
       assert.strictEqual(response.body.user.bio, updates.user.bio);
       assert.strictEqual(response.body.user.image, updates.user.image);
+
+      // Assert that updatedAt is more recent than createdAt
+      const createdAt = new Date(response.body.user.createdAt);
+      const updatedAt = new Date(response.body.user.updatedAt);
+      assert(updatedAt > createdAt, "updatedAt should be more recent than createdAt");
     });
 
     it("should update email when authenticated", async () => {

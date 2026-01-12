@@ -10,6 +10,8 @@ Do not modify anything outside folder code/
 
 Create an executable script to start server named code/start.sh
 
+Ignore everything in folder examples/
+
 Use PORT 3000.
 
 Health check on / should return 200 with empty body.
@@ -22,8 +24,8 @@ Passwords should be encrypted.
 
 # Tech stack
 
-- Python 3
-- FastAPI
+- C++
+- Drogon
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests

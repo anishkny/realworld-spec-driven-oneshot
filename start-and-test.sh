@@ -48,7 +48,6 @@ echo ""
 echo "==> Starting server on port ${PORT}..."
 
 ./code/start.sh &
-SERVER_PID=$!
 
 # Wait for server to be ready
 if npx -y wait-port http://localhost:${PORT} --output dots; then

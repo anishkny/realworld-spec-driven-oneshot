@@ -1,28 +1,75 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+# Script to start the server and run API tests
+# Usage: ./start-and-test.sh
 
+set -euo pipefail
+
+# Configuration
 PORT=3000
+POSTGRES_PORT=5432
+TEST_TIMEOUT=10000
 
 # Ensure cleanup happens even if script fails
-trap 'npx -y kill-port ${PORT} > /dev/null 2>&1 || true' EXIT
+trap 'cleanup' EXIT
 
-# Ensure port 5432 is up (Postgres)
-npx -y wait-port 5432 --timeout 1000 || {
-  echo "Make sure Postgres is running on port 5432"
-  exit 1
+cleanup() {
+  echo ""
+  echo "==> Cleaning up..."
+  npx -y kill-port ${PORT} > /dev/null 2>&1 || true
 }
 
-# Ensure port is free
-npx -y kill-port ${PORT} > /dev/null 2>&1 || true
+# ============================================================================
+# Step 1: Check Prerequisites
+# ============================================================================
+echo "==> Checking prerequisites..."
 
-# Start server in background
+if ! npx -y wait-port ${POSTGRES_PORT} --timeout 1000; then
+  echo "ERROR: Postgres is not running on port ${POSTGRES_PORT}"
+  echo "Please start Postgres before running this script."
+  exit 1
+fi
+
+echo "✓ Postgres is running"
+
+# ============================================================================
+# Step 2: Prepare Environment
+# ============================================================================
+echo ""
+echo "==> Preparing environment..."
+
+# Ensure the server port is available
+npx -y kill-port ${PORT} > /dev/null 2>&1 || true
+echo "✓ Port ${PORT} is available"
+
+# ============================================================================
+# Step 3: Start Server
+# ============================================================================
+echo ""
+echo "==> Starting server on port ${PORT}..."
+
 ./code/start.sh &
+SERVER_PID=$!
 
 # Wait for server to be ready
-npx -y wait-port http://localhost:${PORT} --output dots
+if npx -y wait-port http://localhost:${PORT} --output dots; then
+  echo "✓ Server is ready"
+else
+  echo "ERROR: Server failed to start"
+  exit 1
+fi
 
-# Run tests
-node --test --test-timeout 10000 ./api.test.mjs
+# ============================================================================
+# Step 4: Run Tests
+# ============================================================================
+echo ""
+echo "==> Running API tests..."
 
-# Kill the server process
-npx -y kill-port ${PORT} > /dev/null 2>&1 || true
+if node --test --test-timeout ${TEST_TIMEOUT} ./api.test.mjs; then
+  echo ""
+  echo "✓ All tests passed!"
+  exit 0
+else
+  echo ""
+  echo "✗ Tests failed"
+  exit 1
+fi

@@ -6,6 +6,8 @@ Build just the specified features exactly - no additions.
 
 Output all source code in a single folder code/ including package.json etc
 
+Make sure generated file and folder permissions are reasonable - not world writeable.
+
 Do not modify anything outside folder code/
 
 Create an executable script to start server named code/start.sh

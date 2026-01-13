@@ -24,8 +24,9 @@ Passwords should be encrypted.
 
 # Tech stack
 
-- Rust
-- Axum
+- Java
+- Spring
+- Hibernate
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests

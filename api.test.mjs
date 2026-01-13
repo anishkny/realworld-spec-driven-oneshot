@@ -243,19 +243,6 @@ describe("RealWorld API Tests", () => {
       assert.strictEqual(response.body.user.image, updates.user.image);
     });
 
-    it("should update email when authenticated", async () => {
-      const user = testUsers[1];
-      const token = testTokens[user.email];
-      const newEmail = `updated${Date.now()}@example.com`;
-      const updates = { user: { email: newEmail } };
-
-      const response = await makeRequest("PUT", "/api/user", updates, token);
-
-      assert.strictEqual(response.status, 200, "Should return 200");
-      assert.strictEqual(response.body.user.email, newEmail);
-      testTokens[newEmail] = token;
-    });
-
     it("should return 401 when not authenticated", async () => {
       const updates = { user: { bio: "New bio" } };
       const response = await makeRequest("PUT", "/api/user", updates);

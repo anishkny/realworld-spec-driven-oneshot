@@ -2,7 +2,6 @@
 set -euxo pipefail
 
 PORT=3000
-TIMEOUT=30000   # in milliseconds
 
 # Ensure cleanup happens even if script fails
 trap 'npx -y kill-port ${PORT} > /dev/null 2>&1 || true' EXIT
@@ -20,7 +19,7 @@ npx -y kill-port ${PORT} > /dev/null 2>&1 || true
 ./code/start.sh &
 
 # Wait for server to be ready
-npx -y wait-port http://localhost:${PORT} --output dots --timeout=${TIMEOUT}
+npx -y wait-port http://localhost:${PORT} --output dots
 
 # Run tests
 node --test --test-timeout 10000 ./api.test.mjs

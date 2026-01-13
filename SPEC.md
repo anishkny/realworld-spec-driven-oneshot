@@ -33,6 +33,8 @@ All tests in `api.test.mjs` should pass.
 
 Check by running `start-and-test.sh` which will start server and run tests.
 
+Hint: To get a summary of expected behavior, run: `grep -e 'describe("' -e 'it("' -e 'assert(' api.test.mjs`
+
 # Details
 
 ## JSON Objects returned by API:

@@ -10,7 +10,7 @@ Make sure generated file and folder permissions are reasonable - not world write
 
 Do not modify anything outside folder code/
 
-Create an executable script to start server named code/start.sh
+Create an executable script to start server named code/start.sh. It should have build commands if needed.
 
 Ignore everything in folder examples/
 
@@ -26,15 +26,15 @@ Passwords should be encrypted.
 
 # Tech stack
 
-- Java
-- Spring
-- Hibernate
+- Dotnet C#
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests
 All tests in `api.test.mjs` should pass.
 
-Check by running `start-and-test.sh` which will start server and run tests.
+Tests can be run by executing: `node --test ./api.test.mjs`.
+
+Finally, check everything by running `start-and-test.sh` which will restart server and run tests.
 
 Hint: To get a summary of expected behavior, run: `grep -e 'describe("' -e 'it("' -e 'assert(' api.test.mjs`
 

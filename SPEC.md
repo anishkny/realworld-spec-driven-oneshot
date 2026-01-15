@@ -26,7 +26,8 @@ Passwords should be encrypted.
 
 # Tech stack
 
-- Dotnet C#
+- Node.js
+- Express
 - Postgres (provided via env var POSTGRES_URI, default to postgres://postgres:password@localhost:5432/postgres)
 
 # Tests

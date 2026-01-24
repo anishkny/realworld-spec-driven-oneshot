@@ -1,17 +1,17 @@
-# Spec Driven RealWorld (Oneshot)
+# Spec Driven RealWorld
 
 Spin up a complete [RealWorld](https://github.com/gothinkster/realworld) backend from a single spec, in one go. Point the tool at [SPEC.md](SPEC.md), let Copilot (or any compatible AI coding tool) generate the implementation into `code/`, then run the provided tests to confirm everything works.
 
 ## Description
 
 - A spec-first RealWorld backend contract in [SPEC.md](SPEC.md) with complete API tests ([api.test.mjs](api.test.mjs)).
-- A repeatable oneshot workflow that takes the spec and emits a runnable server into `code/`.
+- Generate a complete, runnable server from the spec in one go into `code/`.
 - Sample outputs for various popular stacks under [examples/](examples).
 
 ## Prerequisites
 
 - Node 20+ (for `npx` and the test runner)
-- Docker (to run Postgres quickly) or a Postgres instance you control
+- Docker (to run Postgres quickly) or a Postgres instance
 - An AI coding tool that can read the spec (e.g., Copilot with tool access)
 
 ## Quick Start
@@ -45,7 +45,7 @@ If you prefer to run tests manually: `node --test ./api.test.mjs` (server must b
 ## Tweak the Tech Stack
 
 - Edit [SPEC.md](SPEC.md) to change the language, framework, or database assumptions (e.g., swap to Go, C#, Rust, etc.).
-- Re-run the one-shot generation above; the AI coding tool should honor the updated stack and regenerate `code/` accordingly.
+- Re-run the generation above; the AI coding tool should honor the updated stack and regenerate `code/` accordingly.
 - Examples of generated outputs for various stacks live in [examples/](examples) (look for stack-specific folders like `nodejs-express`, `rust-axum`, `dotnet-csharp`, `go-gin` etc).
 
 ## How it Works
